@@ -1,0 +1,79 @@
+# Default values for contapag.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+ingress:
+  enabled: false
+
+# Global values
+global:
+    security:
+      keycloak:
+        username: admin
+        password: admin123
+        datasource:
+          username: keycloak
+          secret: pipoca1
+
+# Infra
+keycloak:
+  # version: 7.0.0
+  # version: 11.0.1
+  enabled: true
+  # extraEnv: |
+  #   - name: DB_VENDOR
+  #     value: postgres
+  #   - name: DB_ADDR
+  #     value: postgres
+  #   - name: DB_PORT
+  #     value: "5432"
+  #   - name: DB_DATABASE
+  #     value: keycloak
+  #   - name: DB_USER
+  #     value: keycloak
+  #   - name: DB_PASSWORD
+  #     value: keycloak
+  # postgresql:
+  #   postgresUser: keycloak
+  #   postgresPassword: "keycloak"
+  #   postgresDatabase: keycloak
+  keycloak:
+    auth:
+      adminUser: admin
+      adminPassword: admin123
+    # username: admin
+    # password: admin123
+    # persistence:
+    #   deployPostgres: false
+    #   dbVendor: postgres
+    #   dbName: keycloak
+    #   # dbName: contapag_sec
+    #   dbHost: postgres
+    #   dbPort: 5432
+    #   dbUser: keycloak
+    #   dbPassword: keycloak 
+    service:
+      type: NodePort

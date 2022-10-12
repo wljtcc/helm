@@ -1,0 +1,55 @@
+# Default values for contapag.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+ingress:
+  enabled: false
+
+# Global values
+global:
+    security:
+      keycloak:
+        username: admin
+        password: admin123
+
+# Infra
+keycloak:
+  enabled: true
+  postgresql:
+    enabled: false
+  keycloak:
+    username: admin
+    password: admin123
+    persistence:
+      deployPostgres: false
+      dbVendor: postgres
+      dbName: contapag_sec_dev
+      dbHost: postgres
+      dbPort: 5432
+      dbUser: keycloak
+      dbPassword: keycloak 
+    service:
+      type: NodePort
